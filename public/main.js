@@ -1,54 +1,20 @@
-$(function() {
+var module = angular.module('sampleApp', []);
 
-	var token = window.location.hash.replace("#access_token=", ""),
-		access_token = { access_token: token };
 
-		// Makes the Instagram API call
-		function getImages(tag, access_token) {
-			
-			var url,
-				count = 12;
+module.controller('mainController', function($scope) {
 
-				url = 'https://api.instagram.com/v1/tags/' + tag + '/media/recent?callback=?&count=' + count;
+	$scope.data = ['item 1', 'item 2', 'item 3'];
 
-				$.ajax({
-					type: 'GET',
-					url: url,
-					dataType: 'json',
-					data: access_token,
-					success: loadData
-				});
-		}
+	$scope.stores = ['Barneys', 'Saks', 'Macys'];
 
-		// Function that will actually append our images to the DOM
-		function loadData(instagram_data) {
-			console.log(instagram_data.data);
-			var photos,
-				photo,
-				new_image;
+	$scope.isCool = true;
 
-				if (instagram_data.meta.code === 200){
-					photos = instagram_data.data;
+	$scope.money = 100;
 
-					for (i in photos){
-						photo = photos[i];
+	$scope.alertHello = function(name) {
+		alert(name);
+	}
 
-						new_image = $('<img src="' +photo.images.standard_resolution.url + '">');
-						// $('#target').append(new_image);
-
-					new_image.load(function(){
-						$('#target').append($(this).hide());
-						   $(this).fadeIn(2000);
-						})
-					}
-				}
-
-		}
-
-		// add search functionality
-		$('#search-button').on("click", function(){
-			$tag = $('input.search-tag').val();
-			getImages($tag, access_token);
-		});
+	console.log($scope);
 
 });
