@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="sampleApp">
+  <head>
+    <title>Instagram Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  </head>
+  <body ng-controller="mainController" class="container">
+
+  <div ng-if="isCool === true">
+    <h1>{{ data }}</h1>
+    
+    <h1 ng-repeat="datum in data">{{ datum }}</h1>
+
+    <ul>
+      <li ng-repeat="store in stores">{{ store }}</li>
+    </ul>
+
+    <p>{{ money | currency }}</p>
+
+    <input type="text" placeholder="Enter name" ng-model="inputText" ng-init="inputText = {}" class="form-control"> 
+    {{ inputText }}
+
+    <button ng-click="alertHello(inputText)">Hey There!</button>
+
+    <button ng-click="alertHello()" class="btn btn-primary">Hello!</button>
+  </div>
+
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+  <script src="main.js"></script>
+  </body>
+</html>
